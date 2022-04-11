@@ -6,7 +6,6 @@ pipeline {
                 echo 'delete old jar files'
                 sh'''sudo rm -rf spring-boot-with-prometheus-0.1.0.jar
                 ls
-                cd ../..
                 ./gradlew build
                 echo 'check if the file is created'
                 ls /Spring/build/libs'''

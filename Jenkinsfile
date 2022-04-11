@@ -13,7 +13,7 @@ pipeline {
             steps {
                 echo 'deploying my first app'
                 sh''' sudo kill $(ps aux | grep "spring-boot" | awk '{print $2}')
-                java -jar build/libs/spring-boot-with-prometheus-0.1.0.jar > spring-logs.out
+                sudo java -jar build/libs/spring-boot-with-prometheus-0.1.0.jar > spring-logs.out
                 cat spring-logs.out
                 echo Done'''      
             }

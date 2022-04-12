@@ -22,11 +22,5 @@ pipeline {
                 '''      
             }
         }
-        stage('Checking Application Service') { 
-            steps {
-                sh''' set +e
-                ./check.sh'''
-            }
-        }
     }
 }

@@ -17,10 +17,15 @@ pipeline {
                 sudo lsof -t -i:8080
                 sudo lsof -t -i:8080 >> tp.txt && cat tp.txt
                 sudo kill -9 $(cat tp.txt)
-                sudo java -jar build/libs/spring-boot-with-prometheus-0.1.0.jar > spring-logs.out&; cat tp.txt
+                sudo java -jar build/libs/spring-boot-with-prometheus-0.1.0.jar > spring-logs.out&
                 echo Done'''      
             }
         }
+        post {
+         always {
+            sh"cat tp.txt"
+        }
+     }
         
     }
 }

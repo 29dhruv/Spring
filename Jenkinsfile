@@ -22,8 +22,8 @@ pipeline {
             }
         }
         post {
-         always {
-            sh"cat tp.txt"
+           always {
+                sh"cat tp.txt"
         }
      }
         

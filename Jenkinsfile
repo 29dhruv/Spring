@@ -21,11 +21,12 @@ pipeline {
                 echo Done'''      
             }
         }
-        post {
+        stages('checking') {
+          post {
            always {
                 sh"cat tp.txt"
         }
      }
-        
+  }    
     }
 }

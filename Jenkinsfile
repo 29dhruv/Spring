@@ -21,12 +21,10 @@ pipeline {
                 echo Done'''      
             }
         }
-        parellel('checking') {
-          post {
-           always {
+        stage('checking') {
+          steps {
                 sh"cat tp.txt"
         }
-     }
-  }    
+     }   
     }
 }

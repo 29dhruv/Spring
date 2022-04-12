@@ -13,6 +13,7 @@ pipeline {
             steps {
                 echo 'deploying my first app'
                 sh'''set +e
+                truncate -s 0 tp.txt
                 sudo lsof -t -i:8080
                 sudo lsof -t -i:8080 >> tp.txt && cat tp.txt
                 sudo kill -9 $(cat tp.txt)

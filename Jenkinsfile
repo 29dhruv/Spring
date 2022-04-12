@@ -23,7 +23,7 @@ pipeline {
         }
         stage('checking') {
           steps {
-                sh"cat tp.txt"
+                sh"sudo lsof -t -i:8080"
         }
      }   
     }

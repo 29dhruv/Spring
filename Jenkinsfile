@@ -25,7 +25,8 @@ pipeline {
         stage('Checking Application Service') { 
             steps {
                 sh''' set +e
-                sudo lsof -t -i:8080 >> tp.txt && cat tp.txt'''
+                sudo lsof -t -i:8080 >> tp.txt 
+                cat tp.txt'''
             }
         }
     }

@@ -1,0 +1,43 @@
+pipeline {
+    agent {label 'Demo-Node'}
+    stages {
+        stage('github repo') {
+            steps {
+            sh"ls"
+            sh"pwd"
+            }
+        }
+        stage('build spring app') {
+            steps {
+            echo 'delete old jar file'
+            sh'''cd /home/ubuntu/test/Spring/build/libs
+            sudo rm -rf spring-boot-with-prometheus-0.1.0.jar
+            ls
+            cd /home/ubuntu/test/Spring/
+            sudo ./gradlew build
+            echo "check if file is created"
+            ls /home/ubuntu/test/Spring/build/libs'''
+            }
+        }
+        stage('build docker file') {
+            steps {
+            echo 'remove old jar file from docker directory'
+            sh'''cd /home/ubuntu/test/Spring/DOCKER
+            ls
+            sudo rm -rf spring-boot-with-prometheus-0.1.0.jar'''
+            echo 'copy new build file to docker directory'
+            sh'''sudo cp /home/ubuntu/test/Spring/build/libs/spring-boot-with-prometheus-0.1.0.jar /home/ubuntu/test/Spring/DOCKER'''
+            sh'''cd /home/ubuntu/test/Spring/DOCKER
+            sudo docker build -t 29dhruv/springappimage:v1 .
+            '''
+            }
+        }
+        stage('deployment') {
+            steps {
+            echo 'deploying my first spring app'
+            sh'''sudo docker rm -f myspringapp
+            sudo docker run -itd -p 8080:8080 --name myspringapp 29dhruv/springappimage:v1'''
+            }
+        }
+    }
+}

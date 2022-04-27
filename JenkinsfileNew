@@ -10,19 +10,19 @@ pipeline {
         stage('build spring app') {
             steps {
             echo 'delete old jar file'
-            sh'''cd /home/ubuntu/test/Spring/build/libs
+            sh'''cd /home/ubuntu/workspace/Springappdockerfile/build/libs
             sudo rm -rf spring-boot-with-prometheus-0.1.0.jar
             ls
-            cd /home/ubuntu/test/Spring/
+            cd /home/ubuntu/workspace/Springappdockerfile/
             sudo ./gradlew build
             echo "check if file is created"
-            ls /home/ubuntu/test/Spring/build/libs'''
+            ls /home/ubuntu/workspace/Springappdockerfile/build/libs'''
             }
         }
         stage('build docker file') {
             steps {
             echo 'remove old jar file from docker directory'
-            sh'''cd /home/ubuntu/test/Spring/DOCKER
+            sh'''cd /home/ubuntu/workspace/Springappdockerfile/DOCKER
             ls
             sudo rm -rf spring-boot-with-prometheus-0.1.0.jar'''
             echo 'copy new build file to docker directory'

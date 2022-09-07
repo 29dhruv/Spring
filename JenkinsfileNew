@@ -26,8 +26,8 @@ pipeline {
             ls
             sudo rm -rf spring-boot-with-prometheus-0.1.0.jar'''
             echo 'copy new build file to docker directory'
-            sh'''sudo cp /home/ubuntu/test/Spring/build/libs/spring-boot-with-prometheus-0.1.0.jar /home/ubuntu/test/Spring/DOCKER'''
-            sh'''cd /home/ubuntu/test/Spring/DOCKER
+            sh'''sudo cp /home/ubuntu/workspace/Springappdockerfile/build/libs/spring-boot-with-prometheus-0.1.0.jar /home/ubuntu/workspace/Springappdockerfile/DOCKER'''
+            sh'''cd /home/ubuntu/workspace/Springappdockerfile/DOCKER
             sudo docker build -t 29dhruv/springappimage:v1 .
             '''
             }
